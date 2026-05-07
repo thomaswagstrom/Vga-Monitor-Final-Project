@@ -2,8 +2,8 @@
 
 module refresh(
     input clk_m25,
-    output reg [9:0]cntv,
-    output reg [9:0]cnth
+    output reg [9:0]cnth,
+    output reg [9:0]cntv
     );
     reg [9:0]next_cnth;
     reg hpulse;
