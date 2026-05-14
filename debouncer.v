@@ -7,9 +7,9 @@ module debouncer(
     input clk,
     input reset,
     input pb_in, // input from push button
-    output pb_pulse, // output pulse (1 clock wide)
-    output [31:0] count);
-        
+    output pb_pulse // output pulse (1 clock wide)
+    /*output [31:0] count*/); //don't need count as an out
+    wire [31:0] count;    
     wire pulse;
     wire rising_edge;
     wire q0, q1, q2;

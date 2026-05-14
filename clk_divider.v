@@ -4,11 +4,11 @@
 module clk_div(
         input mainclk, // Basys Clock runs at 100MHz
         input reset,
-        input [36:0]div,
+        input [2:0]div,
         output reg div_clk);
-        reg [36:0] pulsecount;
+        reg [2:0] pulsecount;
         always @ (posedge mainclk or posedge reset) begin
-            if (reset == 1'd1) begin //Reset to reset the clk
+            if (reset == 1'd1) begin
                 pulsecount <= 0;
                 div_clk <= 0;
             end

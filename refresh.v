@@ -2,28 +2,32 @@
 
 module refresh(
     input clk_m25,
+    input reset,
     output reg [9:0]cnth,
     output reg [9:0]cntv
     );
-    reg [9:0]next_cnth;
     reg hpulse;
     
-    always @(posedge clk_m25) begin//Runs throught the horizontal line on the screen, sends out a pulse at the end of the line to jump down to the next line
-        if (cnth == 800)begin
-            next_cnth = 0; hpulse = 1;
-        end
+    always @(posedge clk_m25 or posedge reset) begin//Runs throught the horizontal line on the screen, sends out a pulse at the end of the line to jump down to the next line
+        if (reset==1) cnth <= 0;
         else begin
-            next_cnth = cnth +1; hpulse = 0;
+            if (cnth == 800)begin
+                cnth <= 0; hpulse <= 1;
+            end
+            else begin
+                cnth <= cnth +1; hpulse <= 0;
+            end
         end
     end
-   
-    reg [9:0] next_cntv;
 
-    always @(posedge clk_m25) begin //Cycles down one line each time there is an hpulse
-        if(hpulse==1)begin
-            if(cntv == 525) next_cntv = 0;
-            else next_cntv = cntv + 1;
-        end
-        else cntv = cntv;
+    always @(posedge clk_m25 or posedge reset) begin //Cycles down one line each time there is an hpulse
+        if (reset==1) cntv <= 0;
+        else begin
+            if(hpulse==1)begin
+                if(cntv == 525) cntv <= 0;
+                else cntv <= cntv + 1;
+            end
+            else cntv <= cntv;
+       end
     end
 endmodule
