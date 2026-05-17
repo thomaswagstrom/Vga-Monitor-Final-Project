@@ -17,7 +17,7 @@ module top_vga(
     clk_div pxl(clk,reset,'d1,clk_25m);//Sets the clock to 25MHz
     
     wire upd,downd,leftd,rightd;
-    
+    //Debounces the button inputs
     debouncer U1(clk,reset,up,upd);
     debouncer D1(clk,reset,down,downd);
     debouncer L1(clk,reset,left,leftd);
@@ -39,7 +39,7 @@ module top_vga(
     wire [9:0] pxlLH,pxlRH;
     wire [9:0] pxlUV,pxlDV;
     
-    rgb_storage data(clk_25m,upd,downd,leftd,rightd,reset,pxlLH,pxlRH,pxlUV,pxlDV);
+    rgb_storage data(clk,upd,downd,leftd,rightd,reset,pxlLH,pxlRH,pxlUV,pxlDV);//Try faster clk for inputs
      
     always @(*) begin
         if ((valueh > 142) && (valueh < 783) && (valuev > 33) && (valuev < 514)) begin
