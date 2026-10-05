@@ -2,7 +2,7 @@
 /*
     Top module for the project. This is meant to pop out an image with an interactable box you can move, a switch to change the background color, 
     and my initials "TW" in the bottom left corner.
-    Display resolution: 854 x 480
+    Display resolution: 640 x 480
 */
 module top_vga(
     input clk,//Basys3 Clock, 100MHz
