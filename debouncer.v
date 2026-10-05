@@ -4,18 +4,18 @@
 // This module simulates debounce of an incoming push button signal with the result only a single 
 // 1 clock wide output. The output locks out for 10 ms so a maximum of one pulse per 10 ms.
 module debouncer(
-    input clk,
+    input clk,//Uses default Basis 100MHz clk
     input reset,
     input pb_in, // input from push button
     output pb_pulse // output pulse (1 clock wide)
-    /*output [31:0] count*/); //don't need count as an out
+    /*output [31:0] count*/); //don't need count as an out TW
     wire [31:0] count;    
     wire pulse;
     wire rising_edge;
     wire q0, q1, q2;
     
     // look for a rising edge 
-    dff U2(.clk(clk), .reset(reset), .d(pb_in), .q(q0));
+    dff U2(.clk(clk), .reset(reset), .d(pb_in), .q(q0));//The double dff helps to smooth out any extra "presses"
     dff U3(.clk(clk), .reset(reset), .d(q0), .q(q1));
     assign rising_edge = q0 & (~q1);
 

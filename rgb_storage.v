@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module rgb_storage(
-    input clk_25m,
+    input clk,
     input upd,
     input downd,
     input leftd,
@@ -17,14 +17,14 @@ module rgb_storage(
     reg [9:0]pixel_UV_next,pixel_DV_next;
     always @(*)begin
         if(upd) begin //Update if Up
-            pixel_UV_next <= (pixel_UV + 'd1); 
-            pixel_DV_next <= (pixel_DV + 'd1);
+            pixel_UV_next <= (pixel_UV - 'd1); 
+            pixel_DV_next <= (pixel_DV - 'd1);
             pixel_LH_next <= pixel_LH; 
             pixel_RH_next <= pixel_RH;
         end
         else if(downd) begin //Update if Down
-            pixel_UV_next <= (pixel_UV - 'd1); 
-            pixel_DV_next <= (pixel_DV - 'd1);
+            pixel_UV_next <= (pixel_UV + 'd1); 
+            pixel_DV_next <= (pixel_DV + 'd1);
             pixel_LH_next <= pixel_LH; 
             pixel_RH_next <= pixel_RH;
         end

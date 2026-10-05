@@ -8,14 +8,14 @@ module refresh(
     );
     reg hpulse;
     
-    always @(posedge clk_m25 or posedge reset) begin//Runs throught the horizontal line on the screen, sends out a pulse at the end of the line to jump down to the next line
-        if (reset==1) cnth <= 0;
+    always @(posedge clk_m25 or posedge reset) begin//Runs throught the horizontal line on the screen, 
+        if (reset==1) cnth <= 0; 
         else begin
             if (cnth == 800)begin
-                cnth <= 0; hpulse <= 1;
+                cnth <= 0; hpulse <= 1;//Sends out a pulse at the end of the line to jump down to the next line
             end
             else begin
-                cnth <= cnth +1; hpulse <= 0;
+                cnth <= cnth +1; hpulse <= 0;//Otherwise counts up 1, makes sure to toggle pulse back to 0 incase it high
             end
         end
     end

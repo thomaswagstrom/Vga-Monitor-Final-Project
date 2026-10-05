@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 
 //Code handout for project
+//Just your normal dff
 module dff(
     input clk,
     input reset,
@@ -9,8 +10,8 @@ module dff(
     );
     
     always @(posedge clk or posedge reset) begin
-        if (reset==1) q<=1'b0;
-        else q<=d;
+        if (reset==1) q<=1'b0;//Resets value
+        else q<=d;//Otherwise sets q to d
     end
     
 endmodule
