@@ -1,13 +1,17 @@
 `timescale 1ns / 1ps
-
+/*
+    Top module for the project. This is meant to pop out an image with an interactable box you can move, a switch to change the background color, 
+    and my initials "TW" in the bottom left corner.
+    Display resolution: 854 x 480
+*/
 module top_vga(
-    input clk,
-    input up,//Inputs
+    input clk,//Basys3 Clock, 100MHz
+    input up,//Button Inputs
     input down,
     input left,
     input right,
     input color,//Toggles background color
-    input reset,
+    input reset,//Reset display
     output reg[3:0]red,//Signals for pixel color
     output reg[3:0]grn,
     output reg[3:0]blu,
@@ -55,7 +59,7 @@ module top_vga(
                 blu <= 'b0000;
                 grn <= 'b0000;
             end
-            else if ((letterT=='d1) || (letterW=='d1))begin //Makes pixel part of a letter blue
+            else if ((letterT=='d1) || (letterW=='d1))begin //Makes pixels part of a letter Blue
                 red <= 'b0000;
                 blu <= 'b1111;
                 grn <= 'b0000;
