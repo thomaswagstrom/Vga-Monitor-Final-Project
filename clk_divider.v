@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-//clock_divider from LB11
+//clock_divider from LB11, a lab previously done in this class. This module is from that
 module clk_div(
         input mainclk, // Basys Clock runs at 100MHz
         input reset,
