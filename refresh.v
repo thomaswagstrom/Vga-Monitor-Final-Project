@@ -1,5 +1,7 @@
 `timescale 1ns / 1ps
-
+/*
+    Runs the refresh cycle for the display. Outputs the horizontal and verticle position of the current refresh pixel
+*/
 module refresh(
     input clk_m25,
     input reset,
