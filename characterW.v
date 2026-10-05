@@ -1,5 +1,9 @@
 `timescale 1ns / 1ps
-
+/* 
+    This file is a representation of the first character of my initials, 'W'. 
+    Inputs are the bounds of where the character is on the display as well as the value of the
+    current pixel in the refresh cycle. The output is whether this pixel is part of the character or not.
+*/
 module characterW(
     input [9:0]valueh,//Current H value
     input [9:0]valuev,//Current V value
